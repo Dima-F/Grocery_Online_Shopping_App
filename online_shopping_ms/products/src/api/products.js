@@ -1,11 +1,9 @@
 const ProductService = require('../services/product-service');
-const CustomerService = require('../services/customer-service');
 const UserAuth = require('./middlewares/auth')
 
 module.exports = (app) => {
     
     const service = new ProductService();
-    const customerService = new CustomerService();
 
 
     app.post('/product/create', async(req,res,next) => {
