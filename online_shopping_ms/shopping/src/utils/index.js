@@ -63,6 +63,8 @@ module.exports.CreateChannel = async () => {
 module.exports.PublishMessage = async (channel, binding_key, message) => {
     try {
         await channel.publish(EXCHANGE_NAME, binding_key, Buffer.from(message))
+        console.log('pablished in shopping:');
+        console.log(message);
     } catch (e) {
         throw e;
     } 

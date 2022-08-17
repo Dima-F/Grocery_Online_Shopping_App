@@ -59,7 +59,9 @@ module.exports.CreateChannel = async () => {
 
 module.exports.PublishMessage = async (channel, binding_key, message) => {
     try {
-        await channel.publish(EXCHANGE_NAME, binding_key, Buffer.from(message))
+        await channel.publish(EXCHANGE_NAME, binding_key, Buffer.from(message));
+        console.log('pablished in products:');
+        console.log(message);
     } catch (e) {
         throw e;
     } 
@@ -71,6 +73,7 @@ module.exports.SubscribeMessage = async (channel, service, binding_key) => {
     channel.consume(appQueue.queue, data => {
         console.log('received data in product service...');
         console.log(data.content.toString());
+        service.SubscribeEvents(data.content.toString());
         channel.ack(data);
     });
 }
